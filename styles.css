@@ -92,3 +92,22 @@
   .hero-copy>p{font-size:14px}
   .hero-person{height:510px}
 }
+
+/* iOS / in-app browser transparent hero fallback */
+@media(max-width:760px){
+  .hero-person{isolation:auto;overflow:visible;transform:translateZ(0)}
+  .hero-person img,
+  .hero-person.visible img{
+    animation:heroSubjectMobileStable 1.9s .18s cubic-bezier(.16,.8,.2,1) both!important;
+    filter:none!important;
+    mix-blend-mode:normal!important;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    will-change:opacity,transform;
+  }
+  .hero-person:after{background:linear-gradient(transparent,var(--navy));height:12%}
+  @keyframes heroSubjectMobileStable{
+    0%{opacity:0;transform:translateX(64px) scale(.98)}
+    100%{opacity:1;transform:translateX(0) scale(1)}
+  }
+}
